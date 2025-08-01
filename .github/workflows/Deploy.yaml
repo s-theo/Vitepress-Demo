@@ -15,16 +15,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          run_install: true
           version: latest
+          run_install: true
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
 
       - name: Build
         run: pnpm run build
