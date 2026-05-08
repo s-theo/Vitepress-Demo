@@ -26,10 +26,10 @@ jobs:
         with:
           version: latest
 
-      - name: Approve build scripts
-        run: pnpm approve-builds -y || true
+      - name: Allow build scripts (FIX ESBUILD ISSUE)
+        run: pnpm config set ignore-scripts false
 
-      - name: install dependencies
+      - name: Install dependencies
         run: pnpm install
 
       - name: Build
