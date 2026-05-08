@@ -26,11 +26,11 @@ jobs:
         with:
           version: latest
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
       - name: Approve build scripts
         run: pnpm approve-builds -y || true
+
+      - name: install dependencies
+        run: pnpm install
 
       - name: Build
         run: pnpm run build
