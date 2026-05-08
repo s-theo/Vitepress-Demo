@@ -11,21 +11,27 @@ on:
 jobs:
   pages:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - uses: pnpm/action-setup@v6
-        name: Install pnpm
-        with:
-          version: latest
-          run_install: true
 
       - name: Install Node.js
         uses: actions/setup-node@v6
         with:
           node-version: lts/*
           cache: pnpm
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Approve build scripts
+        run: pnpm approve-builds -y || true
 
       - name: Build
         run: pnpm run build
