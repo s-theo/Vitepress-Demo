@@ -26,9 +26,6 @@ jobs:
         with:
           version: latest
 
-      - name: Allow build scripts (FIX ESBUILD ISSUE)
-        run: pnpm config set ignore-scripts false
-
       - name: Install dependencies
         run: pnpm install
 
